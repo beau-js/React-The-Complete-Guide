@@ -1,0 +1,31 @@
+.addUserForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // border: 1px solid black;
+  // border-radius: 5px;
+
+  form {
+
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    // justify-content: left;
+    input {
+      margin: 0px 10px;
+
+    }
+
+    label {
+      margin: 10px 10px;
+    }
+
+    button {
+      width: 100px;
+      margin: 10px 10px;
+    }
+  }
+
+}

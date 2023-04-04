@@ -1,0 +1,18 @@
+$b: 1px solid black;
+$br: 5px;
+$w: 500px;
+
+.users-store {
+  // border: $b;
+  // border-radius: $br;
+  width: $w;
+  margin-top: 20px;
+
+
+  ul li {
+    list-style: none;
+    border: $b;
+    margin: 0px 10px 0px -30px;
+    padding: 5px;
+  }
+}
