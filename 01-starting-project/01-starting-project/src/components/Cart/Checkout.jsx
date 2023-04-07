@@ -2,90 +2,86 @@
  * @Author: Beau pg.beau@outlook.com
  * @Date: 2023-04-07 18:50:27
  * @LastEditors: Beau pg.beau@outlook.com
- * @LastEditTime: 2023-04-08 05:07:29
+ * @LastEditTime: 2023-04-08 05:49:37
  * @FilePath: \workspace\React-The-Complete-Guide\01-starting-project\01-starting-project\src\components\Cart\Checkout.jsx
  * @Description:
  *
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
  */
 
-import { useRef, useState } from "react";
+import useInput from "../hooks/useInput";
 import classes from "./Checkout.module.scss";
 
 const Checkout = (props) => {
-  const [nameInputValue, setNameInputValue] = useState("");
-  const [streetInputValue, setStreetInputValue] = useState("");
-  const [postalInputValue, setPostalInputValue] = useState("");
-  const [cityInputValue, setCityInputValue] = useState("");
-
-  const [nameIsValid, setNameIsValid] = useState(true);
-  const [streetIsValid, setStreetIsValid] = useState(true);
-  const [postalIsValid, setPostalIsValid] = useState(true);
-  const [cityIsValid, setCityIsValid] = useState(true);
-
-  const nameInputRef = useRef();
-  const streetInputRef = useRef();
-  const postalInputRef = useRef();
-  const cityInputRef = useRef();
-
-  const nameInputChangeHandler = (event) => {
-    setNameInputValue(event.target.value);
-    if (event.target.value.trim() !== "") {
-      setNameIsValid(true);
-    }
-  };
-  const streetInputChangeHandler = (event) => {
-    setStreetInputValue(event.target.value);
-    if (event.target.value.trim() !== "") {
-      setStreetIsValid(true);
-    }
-  };
-  const postalInputChangeHandler = (event) => {
-    setPostalInputValue(event.target.value);
-    if (event.target.value.trim() !== "") {
-      setPostalIsValid(true);
-    }
-  };
-  const cityInputChangeHandler = (event) => {
-    setCityInputValue(event.target.value);
-    if (event.target.value.trim() !== "") {
-      setCityIsValid(true);
-    }
-  };
+  const {
+    inputValue: nameInputValue,
+    inputRef: nameInputRef,
+    isValid: nameIsValid,
+    isInvalid: nameHasError,
+    inputChangeHandler: nameInputChangeHandler,
+    inputBlurHandler: nameIsTouched,
+    reset: nameReset,
+  } = useInput();
+  const {
+    inputValue: streetInputValue,
+    inputRef: streetInputRef,
+    isValid: streetIsValid,
+    isInvalid: streetHasError,
+    inputChangeHandler: streetInputChangeHandler,
+    inputBlurHandler: streetIsTouched,
+    reset: streetReset,
+  } = useInput();
+  const {
+    inputValue: postalInputValue,
+    inputRef: postalInputRef,
+    isValid: postalIsValid,
+    isInvalid: postalHasError,
+    inputChangeHandler: postalInputChangeHandler,
+    inputBlurHandler: postalIsTouched,
+    reset: postalReset,
+  } = useInput();
+  const {
+    inputValue: cityInputValue,
+    inputRef: cityInputRef,
+    isValid: cityIsValid,
+    isInvalid: cityHasError,
+    inputChangeHandler: cityInputChangeHandler,
+    inputBlurHandler: cityIsTouched,
+    reset: cityReset,
+  } = useInput();
 
   const confirmHandler = (event) => {
     event.preventDefault();
-    if (nameInputRef.current.value.trim() === "") {
-      setNameIsValid(false);
+
+    if (nameHasError) {
       return;
     }
-    if (streetInputRef.current.value.trim() === "") {
-      setStreetIsValid(false);
+    if (streetHasError) {
       return;
     }
-    if (postalInputRef.current.value.trim() === "") {
-      setPostalIsValid(false);
+    if (postalHasError) {
       return;
     }
-    if (cityInputRef.current.value.trim() === "") {
-      setCityIsValid(false);
+    if (cityHasError) {
       return;
     }
 
-    console.log(nameInputRef.current.value);
-    console.log(streetInputRef.current.value);
-    console.log(postalInputRef.current.value);
-    console.log(cityInputRef.current.value);
+    console.log(nameInputValue);
+    console.log(streetInputValue);
+    console.log(postalInputValue);
+    console.log(cityInputValue);
+    fetch()
 
-    setNameInputValue("");
-    setStreetInputValue("");
-    setPostalInputValue("");
-    setCityInputValue("");
+
+    nameReset();
+    streetReset();
+    postalReset();
+    cityReset();
   };
 
   return (
     <form className={classes.form} onSubmit={confirmHandler}>
-      <div className={`${classes.control} ${!nameIsValid && classes.invalid}`}>
+      <div className={`${classes.control} ${nameHasError && classes.invalid}`}>
         <label htmlFor="name">Your Name</label>
         <input
           type="text"
@@ -93,12 +89,13 @@ const Checkout = (props) => {
           ref={nameInputRef}
           onChange={nameInputChangeHandler}
           value={nameInputValue}
+          onBlur={nameIsTouched}
         />
-        {!nameIsValid && <p>must input name</p>}
+        {nameHasError && <p>must input name</p>}
       </div>
 
       <div
-        className={`${classes.control} ${!streetIsValid && classes.invalid}`}
+        className={`${classes.control} ${streetHasError && classes.invalid}`}
       >
         <label htmlFor="street">Street</label>
         <input
@@ -107,12 +104,13 @@ const Checkout = (props) => {
           ref={streetInputRef}
           onChange={streetInputChangeHandler}
           value={streetInputValue}
+          onBlur={streetIsTouched}
         />
-        {!streetIsValid && <p>must input name</p>}
+        {streetHasError && <p>must input street</p>}
       </div>
 
       <div
-        className={`${classes.control} ${!postalIsValid && classes.invalid}`}
+        className={`${classes.control} ${postalHasError && classes.invalid}`}
       >
         <label htmlFor="postal">Postal Code</label>
         <input
@@ -121,11 +119,12 @@ const Checkout = (props) => {
           ref={postalInputRef}
           onChange={postalInputChangeHandler}
           value={postalInputValue}
+          onBlur={postalIsTouched}
         />
-        {!postalIsValid && <p>must input name</p>}
+        {postalHasError && <p>must input Postal Code</p>}
       </div>
 
-      <div className={`${classes.control} ${!cityIsValid && classes.invalid}`}>
+      <div className={`${classes.control} ${cityHasError && classes.invalid}`}>
         <label htmlFor="city">City</label>
         <input
           type="text"
@@ -133,8 +132,9 @@ const Checkout = (props) => {
           ref={cityInputRef}
           onChange={cityInputChangeHandler}
           value={cityInputValue}
+          onBlur={cityIsTouched}
         />
-        {!cityIsValid && <p>must input name</p>}
+        {cityHasError && <p>must input City</p>}
       </div>
       <div className={classes.actions}>
         <button type="button" onClick={props.onCancel}>
