@@ -2,7 +2,7 @@
  * @Author: Beau pg.beau@outlook.com
  * @Date: 2023-04-07 18:50:27
  * @LastEditors: Beau pg.beau@outlook.com
- * @LastEditTime: 2023-04-08 05:49:37
+ * @LastEditTime: 2023-04-09 19:02:04
  * @FilePath: \workspace\React-The-Complete-Guide\01-starting-project\01-starting-project\src\components\Cart\Checkout.jsx
  * @Description:
  *
@@ -50,33 +50,27 @@ const Checkout = (props) => {
     reset: cityReset,
   } = useInput();
 
+  const userData = {
+    username: nameInputValue,
+    street: streetInputValue,
+    postal: postalInputValue,
+    city: cityInputValue,
+  };
+
   const confirmHandler = (event) => {
     event.preventDefault();
+    nameIsTouched();
+    streetIsTouched();
+    postalIsTouched();
+    cityIsTouched();
 
-    if (nameHasError) {
-      return;
+    if (nameIsValid && streetIsValid && postalIsValid && cityIsValid) {
+      props.submitHandler(userData);
+      nameReset();
+      streetReset();
+      postalReset();
+      cityReset();
     }
-    if (streetHasError) {
-      return;
-    }
-    if (postalHasError) {
-      return;
-    }
-    if (cityHasError) {
-      return;
-    }
-
-    console.log(nameInputValue);
-    console.log(streetInputValue);
-    console.log(postalInputValue);
-    console.log(cityInputValue);
-    fetch()
-
-
-    nameReset();
-    streetReset();
-    postalReset();
-    cityReset();
   };
 
   return (

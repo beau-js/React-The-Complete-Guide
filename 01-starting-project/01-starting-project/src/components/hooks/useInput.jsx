@@ -2,23 +2,23 @@ import { useRef, useState } from "react";
 
 const useInput = () => {
   const [inputValue, setInputValue] = useState("");
-  const [changeBlur, setChangeBlur] = useState(false);
+  const [isTouched, setIsTouched] = useState(false);
   const inputRef = useRef();
 
   const isValid = inputValue.trim() !== "";
-  const isInvalid = !isValid && changeBlur;
+  const isInvalid = !isValid && isTouched;
 
   const inputChangeHandler = (event) => {
     setInputValue(event.target.value);
   };
 
   const inputBlurHandler = () => {
-    setChangeBlur(true);
+    setIsTouched(true);
   };
 
   const reset = () => {
     setInputValue("");
-    setChangeBlur(false);
+    setIsTouched(false);
   };
 
   return {
