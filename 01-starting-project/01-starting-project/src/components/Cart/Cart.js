@@ -2,7 +2,7 @@
  * @Author: Beau pg.beau@outlook.com
  * @Date: 2022-03-30 14:25:38
  * @LastEditors: Beau pg.beau@outlook.com
- * @LastEditTime: 2023-04-09 19:26:49
+ * @LastEditTime: 2023-04-10 15:25:17
  * @FilePath: \workspace\React-The-Complete-Guide\01-starting-project\01-starting-project\src\components\Cart\Cart.js
  * @Description:
  *
@@ -35,10 +35,6 @@ const Cart = (props) => {
 
   const orderHandler = () => {
     setIsCheckout(true);
-  };
-
-  const clearHandler = () => {
-    cartCtx.items = [];
   };
 
   const submitHandler = async (userData) => {
