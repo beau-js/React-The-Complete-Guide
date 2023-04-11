@@ -19,8 +19,8 @@
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
  */
 import { configureStore } from "@reduxjs/toolkit";
-import counterSlice from "./counter";
-import authSlice from "./auth";
+import counterSlice from "./features/counter";
+import authSlice from "./features/auth";
 
 const store = configureStore({
   reducer: { counter: counterSlice.reducer, auth: authSlice.reducer },

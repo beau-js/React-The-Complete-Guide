@@ -1,18 +1,32 @@
+/*
+ * @Author: Beau pg.beau@outlook.com
+ * @Date: 2023-04-11 03:33:54
+ * @LastEditors: Beau pg.beau@outlook.com
+ * @LastEditTime: 2023-04-12 00:49:49
+ * @FilePath: \workspace\React-The-Complete-Guide\19-1-Advanced-Redux-Cart\src\components\Cart\CartItem.jsx
+ * @Description:
+ *
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
+ */
 import { useDispatch } from "react-redux"
 import classes from "./CartItem.module.css"
-import { cartActions } from "../../store/cart"
+import { cartActions } from "../../store/features/cart-slice.js"
 
 const CartItem = (props) => {
-  const { title, quantity, total, price } = props.item
+  const { title, quantity, total, price, id } = props.item
   const dispatch = useDispatch()
   const addHandler = () => {
-    dispatch(cartActions.addHandler())
-    dispatch(cartActions.setAddAmount(price))
+    dispatch(
+      cartActions.addItemToCart({
+        title,
+        price,
+        id,
+      })
+    )
   }
 
   const deleteHandler = () => {
-    dispatch(cartActions.deleteHandler())
-    dispatch(cartActions.setDeleteAmount(price))
+    dispatch(cartActions.removeItemFromCart(id))
   }
 
   return (
@@ -26,7 +40,7 @@ const CartItem = (props) => {
       </header>
       <div className={classes.details}>
         <div className={classes.quantity}>
-          x <span>{quantity}</span>
+          <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
           <button onClick={deleteHandler}>-</button>

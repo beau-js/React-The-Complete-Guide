@@ -8,29 +8,29 @@
  *
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
  */
-import { useDispatch, useSelector } from "react-redux";
-import classes from "./Counter.module.css";
-import { counterActions } from "../store/counter";
+import { useDispatch, useSelector } from "react-redux"
+import classes from "./Counter.module.css"
+import { counterActions } from "../store/features/counter"
 
 const Counter = () => {
-  const dispatch = useDispatch();
-  const counter = useSelector((state) => state.counter.counter);
-  const show = useSelector((state) => state.counter.showCounter);
+  const dispatch = useDispatch()
+  const counter = useSelector((state) => state.counter.counter)
+  const show = useSelector((state) => state.counter.showCounter)
 
   const toggleCounterHandler = () => {
-    dispatch(counterActions.toggleCounter());
-  };
+    dispatch(counterActions.toggleCounter())
+  }
 
   const incrementHandler = () => {
-    dispatch(counterActions.increment());
-  };
+    dispatch(counterActions.increment())
+  }
   const decrementHandler = () => {
-    dispatch(counterActions.decrement());
-  };
+    dispatch(counterActions.decrement())
+  }
 
   const increaseHandler = () => {
-    dispatch(counterActions.increase(5));
-  };
+    dispatch(counterActions.increase(5))
+  }
 
   return (
     <main className={classes.counter}>
@@ -43,10 +43,10 @@ const Counter = () => {
       </div>
       <button onClick={toggleCounterHandler}>Toggle Counter</button>
     </main>
-  );
-};
+  )
+}
 
-export default Counter;
+export default Counter
 
 //class类组件写法
 // import React, { Component } from "react";
