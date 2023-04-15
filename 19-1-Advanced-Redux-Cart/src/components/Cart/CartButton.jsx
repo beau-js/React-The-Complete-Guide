@@ -2,7 +2,7 @@
  * @Author: Beau pg.beau@outlook.com
  * @Date: 2023-04-11 03:33:54
  * @LastEditors: Beau pg.beau@outlook.com
- * @LastEditTime: 2023-04-11 21:51:05
+ * @LastEditTime: 2023-04-12 17:28:52
  * @FilePath: \workspace\React-The-Complete-Guide\19-1-Advanced-Redux-Cart\src\components\Cart\CartButton.jsx
  * @Description:
  *
@@ -10,7 +10,7 @@
  */
 import { useDispatch, useSelector } from "react-redux"
 import classes from "./CartButton.module.css"
-import { uiActions } from "../../store/features/ui-slice"
+import { uiActions } from "../../store/features/ui-slice.js"
 
 const CartButton = (props) => {
   const totalQuantity = useSelector((state) => state.cart.totalQuantity)

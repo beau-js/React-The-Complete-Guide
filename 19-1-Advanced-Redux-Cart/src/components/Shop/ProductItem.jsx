@@ -8,7 +8,7 @@
  *
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
  */
-import { cartActions } from "../../store/features/cart-slice.js"
+import { cartActions } from "../../store/features/cart-actions.js"
 import Card from "../UI/Card"
 import classes from "./ProductItem.module.css"
 import { useDispatch } from "react-redux"
@@ -18,12 +18,14 @@ const ProductItem = (props) => {
   const { title, price, description, id } = props
 
   const addToCartHandler = () => {
-    dispatch(cartActions.addItemToCart({
-      id,
-      title,
-      price,
-      description
-    }))
+    dispatch(
+      cartActions.addItemToCart({
+        id,
+        title,
+        price,
+        description,
+      })
+    )
   }
 
   return (
