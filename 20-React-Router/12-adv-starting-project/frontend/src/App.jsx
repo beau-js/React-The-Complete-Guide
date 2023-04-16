@@ -2,7 +2,7 @@
  * @Author: Beau pg.beau@outlook.com
  * @Date: 2023-01-16 15:49:26
  * @LastEditors: Beau pg.beau@outlook.com
- * @LastEditTime: 2023-04-16 01:49:38
+ * @LastEditTime: 2023-04-16 23:18:08
  * @FilePath: \workspace\React-The-Complete-Guide\20-React-Router\12-adv-starting-project\frontend\src\App.jsx
  * @Description:
  *
@@ -30,65 +30,58 @@
 // 7. Output the ID of the selected event on the EventDetailPage
 // BONUS: Add another (nested) layout route that adds the <EventNavigation> component above all /events... page components
 
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import HomePage from "./views/HomePage";
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import HomePage from './views/HomePage';
 import EventDetailPage, {
   loader as eventDetailLoader,
-} from "./views/EventDetailPage";
-import EditEventPage from "./views/EditEventPage";
-import NewEventPage from "./views/NewEventPage";
-import RootLayout from "./views/RootLayout";
-import EventsRootLayout from "./components/EventsRootLayout";
-import EventsPage, { loader as eventsLoader } from "./views/Events";
-import Error from "./views/Error";
+  action as deleteEventAction,
+} from './views/EventDetailPage';
+import EditEventPage from './views/EditEventPage';
+import NewEventPage, { action as newEventAction } from './views/NewEventPage';
+import RootLayout from './views/RootLayout';
+import EventsRootLayout from './components/EventsRootLayout';
+import EventsPage, { loader as eventsLoader } from './views/Events';
+import Error from './views/Error';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <RootLayout></RootLayout>,
-    errorElement: <Error></Error>,
+    path: '/',
+    element: <RootLayout />,
+    errorElement: <Error />,
     children: [
-      { index: true, element: <HomePage></HomePage> },
+      { index: true, element: <HomePage /> },
       {
-        path: "/events",
-        element: <EventsRootLayout></EventsRootLayout>,
+        path: '/events',
+        element: <EventsRootLayout />,
         // errorElement:<Error></Error>,
 
         children: [
           {
             index: true,
-            element: <EventsPage></EventsPage>,
+            element: <EventsPage />,
             loader: eventsLoader,
-            // loader: async () => {
-            //   const response = await fetch("http://localhost:8080/events")
-
-            //   if (!response.ok) {
-            //     //...
-            //   } else {
-            //     const resData = await response.json()
-            //     return resData.events
-            //   }
-            // },
           },
           {
-            id: "eventDetail",
-            path: ":eventId",
+            id: 'eventDetail',
+            path: ':eventId',
             loader: eventDetailLoader,
             children: [
               {
                 index: true,
-                element: <EventDetailPage></EventDetailPage>,
+                element: <EventDetailPage />,
+                action: deleteEventAction,
               },
               {
-                path: "edit",
-                element: <EditEventPage></EditEventPage>,
+                path: 'edit',
+                element: <EditEventPage />,
               },
             ],
           },
 
           {
-            path: "new",
-            element: <NewEventPage></NewEventPage>,
+            path: 'new',
+            element: <NewEventPage />,
+            action: newEventAction,
           },
         ],
       },
@@ -97,7 +90,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router}></RouterProvider>;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
