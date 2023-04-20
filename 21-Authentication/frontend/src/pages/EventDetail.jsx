@@ -1,14 +1,31 @@
+/*
+ * @Author: Beau pg.beau@outlook.com
+ * @Date: 2022-11-11 13:30:04
+ * @LastEditors: Beau pg.beau@outlook.com
+ * @LastEditTime: 2023-04-20 04:11:26
+ * @FilePath: \workspace\React-The-Complete-Guide\21-Authentication\frontend\src\pages\EventDetail.jsx
+ * @Description:
+ *
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
+ */
+/*
+ * @Author: Beau pg.beau@outlook.com
+ * @Date: 2022-11-11 13:30:04
+ * @LastEditors: Beau pg.beau@outlook.com
+ * @LastEditTime: 2023-04-20 04:03:29
+ * @FilePath: \workspace\React-The-Complete-Guide\21-Authentication\frontend\src\pages\EventDetail.jsx
+ * @Description:
+ *
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
+ */
 import { Suspense } from 'react';
 import {
-  useRouteLoaderData,
-  json,
-  redirect,
-  defer,
-  Await,
+  useRouteLoaderData, json, redirect, defer, Await,
 } from 'react-router-dom';
 
 import EventItem from '../components/EventItem';
 import EventsList from '../components/EventsList';
+import { getAuthToken } from '../util/auth';
 
 function EventDetailPage() {
   const { event, events } = useRouteLoaderData('event-detail');
@@ -16,14 +33,10 @@ function EventDetailPage() {
   return (
     <>
       <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
-        <Await resolve={event}>
-          {(loadedEvent) => <EventItem event={loadedEvent} />}
-        </Await>
+        <Await resolve={event}>{(loadedEvent) => <EventItem event={loadedEvent} />}</Await>
       </Suspense>
       <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
-        <Await resolve={events}>
-          {(loadedEvents) => <EventsList events={loadedEvents} />}
-        </Await>
+        <Await resolve={events}>{(loadedEvents) => <EventsList events={loadedEvents} />}</Await>
       </Suspense>
     </>
   );
@@ -32,14 +45,14 @@ function EventDetailPage() {
 export default EventDetailPage;
 
 async function loadEvent(id) {
-  const response = await fetch('http://localhost:8080/events/' + id);
+  const response = await fetch(`http://localhost:8080/events/${id}`);
 
   if (!response.ok) {
     throw json(
       { message: 'Could not fetch details for selected event.' },
       {
         status: 500,
-      }
+      },
     );
   } else {
     const resData = await response.json();
@@ -59,7 +72,7 @@ async function loadEvents() {
       { message: 'Could not fetch events.' },
       {
         status: 500,
-      }
+      },
     );
   } else {
     const resData = await response.json();
@@ -77,9 +90,11 @@ export async function loader({ request, params }) {
 }
 
 export async function action({ params, request }) {
-  const eventId = params.eventId;
-  const response = await fetch('http://localhost:8080/events/' + eventId, {
+  const token = getAuthToken();
+  const { eventId } = params;
+  const response = await fetch(`http://localhost:8080/events/${eventId}`, {
     method: request.method,
+    headers: { Authorization: `Bearer ${token}` },
   });
 
   if (!response.ok) {
@@ -87,7 +102,7 @@ export async function action({ params, request }) {
       { message: 'Could not delete event.' },
       {
         status: 500,
-      }
+      },
     );
   }
   return redirect('/events');

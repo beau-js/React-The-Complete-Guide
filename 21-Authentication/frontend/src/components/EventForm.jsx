@@ -1,13 +1,19 @@
+/*
+ * @Author: Beau pg.beau@outlook.com
+ * @Date: 2022-11-11 13:30:04
+ * @LastEditors: Beau pg.beau@outlook.com
+ * @LastEditTime: 2023-04-20 04:28:21
+ * @FilePath: \workspace\React-The-Complete-Guide\21-Authentication\frontend\src\components\EventForm.jsx
+ * @Description:
+ *
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
+ */
 import {
-  Form,
-  useNavigate,
-  useNavigation,
-  useActionData,
-  json,
-  redirect
+  Form, useNavigate, useNavigation, useActionData, json, redirect,
 } from 'react-router-dom';
 
 import classes from './EventForm.module.css';
+import { getAuthToken } from '../util/auth';
 
 function EventForm({ method, event }) {
   const data = useActionData();
@@ -30,50 +36,40 @@ function EventForm({ method, event }) {
         </ul>
       )}
       <p>
-        <label htmlFor="title">Title</label>
-        <input
-          id="title"
-          type="text"
-          name="title"
-          required
-          defaultValue={event ? event.title : ''}
-        />
+        <label htmlFor="title">
+          Title
+          <input id="title" type="text" name="title" required defaultValue={event ? event.title : ''} />
+        </label>
       </p>
       <p>
-        <label htmlFor="image">Image</label>
-        <input
-          id="image"
-          type="url"
-          name="image"
-          required
-          defaultValue={event ? event.image : ''}
-        />
+        <label htmlFor="image">
+          Image
+          <input id="image" type="url" name="image" required defaultValue={event ? event.image : ''} />
+        </label>
       </p>
       <p>
-        <label htmlFor="date">Date</label>
-        <input
-          id="date"
-          type="date"
-          name="date"
-          required
-          defaultValue={event ? event.date : ''}
-        />
+        <label htmlFor="date">
+          Date
+          <input id="date" type="date" name="date" required defaultValue={event ? event.date : ''} />
+        </label>
       </p>
       <p>
-        <label htmlFor="description">Description</label>
-        <textarea
-          id="description"
-          name="description"
-          rows="5"
-          required
-          defaultValue={event ? event.description : ''}
-        />
+        <label htmlFor="description">
+          Description
+          <textarea
+            id="description"
+            name="description"
+            rows="5"
+            required
+            defaultValue={event ? event.description : ''}
+          />
+        </label>
       </p>
       <div className={classes.actions}>
         <button type="button" onClick={cancelHandler} disabled={isSubmitting}>
           Cancel
         </button>
-        <button disabled={isSubmitting}>
+        <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Save'}
         </button>
       </div>
@@ -84,7 +80,7 @@ function EventForm({ method, event }) {
 export default EventForm;
 
 export async function action({ request, params }) {
-  const method = request.method;
+  const { method } = request;
   const data = await request.formData();
 
   const eventData = {
@@ -97,18 +93,19 @@ export async function action({ request, params }) {
   let url = 'http://localhost:8080/events';
 
   if (method === 'PATCH') {
-    const eventId = params.eventId;
-    url = 'http://localhost:8080/events/' + eventId;
+    const { eventId } = params;
+    url = `http://localhost:8080/events/${eventId}`;
   }
 
+  const token = getAuthToken();
   const response = await fetch(url, {
-    method: method,
+    method,
     headers: {
       'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(eventData),
   });
-
   if (response.status === 422) {
     return response;
   }
@@ -119,4 +116,3 @@ export async function action({ request, params }) {
 
   return redirect('/events');
 }
-
