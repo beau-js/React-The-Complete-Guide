@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:@next/next/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["import"],
+  "rules": {
+    "prettier/prettier": 0,
+    "react/prop-types": 0,
+    "no-unused-vars": "warn"
+    // "no-console": 0,
+    // "no-unused-vars": "warn",
+    // "linebreak-style": 0,
+    // "react/prop-types": 0,
+    // "react/react-in-jsx-scope": 0,
+    // "react/jsx-props-no-spreading": 0,
+    // "react/void-dom-elements-no-children": 0,
+    // "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    // "max-len": [
+    //   "error",
+    //   {
+    //     "code": 120,
+    //     "tabWidth": 2,
+    //     "ignoreUrls": true,
+    //     "ignoreStrings": true,
+    //     "ignoreRegExpLiterals": true,
+    //     "ignoreComments": true
+    //   }
+    // ]
+  }
+}

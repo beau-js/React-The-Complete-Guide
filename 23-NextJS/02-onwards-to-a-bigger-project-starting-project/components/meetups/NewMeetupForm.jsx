@@ -1,3 +1,13 @@
+/*
+ * @Author: Beau pg.beau@outlook.com
+ * @Date: 2021-03-24 15:47:18
+ * @LastEditors: Beau pg.beau@outlook.com
+ * @LastEditTime: 2023-04-21 18:14:21
+ * @FilePath: \workspace\React-The-Complete-Guide\23-NextJS\02-onwards-to-a-bigger-project-starting-project\components\meetups\NewMeetupForm.jsx
+ * @Description:
+ *
+ * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
+ */
 import { useRef } from 'react';
 
 import Card from '../ui/Card';
@@ -24,35 +34,45 @@ function NewMeetupForm(props) {
       description: enteredDescription,
     };
 
-    props.onAddMeetup(meetupData);
+    const { onAddMeetup } = props;
+    onAddMeetup(meetupData);
+    // props.onAddMeetup(meetupData);
   }
 
   return (
     <Card>
       <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label htmlFor='title'>Meetup Title</label>
-          <input type='text' required id='title' ref={titleInputRef} />
+          <label htmlFor="title">
+            Meetup Title
+            <input type="text" required id="title" ref={titleInputRef} />
+          </label>
         </div>
         <div className={classes.control}>
-          <label htmlFor='image'>Meetup Image</label>
-          <input type='url' required id='image' ref={imageInputRef} />
+          <label htmlFor="image">
+            Meetup Image
+            <input type="url" required id="image" ref={imageInputRef} />
+          </label>
         </div>
         <div className={classes.control}>
-          <label htmlFor='address'>Address</label>
-          <input type='text' required id='address' ref={addressInputRef} />
+          <label htmlFor="address">
+            Address
+            <input type="text" required id="address" ref={addressInputRef} />
+          </label>
         </div>
         <div className={classes.control}>
-          <label htmlFor='description'>Description</label>
-          <textarea
-            id='description'
-            required
-            rows='5'
-            ref={descriptionInputRef}
-          ></textarea>
+          <label htmlFor="description">
+            Description
+            <textarea
+              id="description"
+              required
+              rows="5"
+              ref={descriptionInputRef}
+            />
+          </label>
         </div>
         <div className={classes.actions}>
-          <button>Add Meetup</button>
+          <button type="submit">Add Meetup</button>
         </div>
       </form>
     </Card>
