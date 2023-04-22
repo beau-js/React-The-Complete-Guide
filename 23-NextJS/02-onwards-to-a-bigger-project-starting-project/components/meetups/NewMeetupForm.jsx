@@ -2,7 +2,7 @@
  * @Author: Beau pg.beau@outlook.com
  * @Date: 2021-03-24 15:47:18
  * @LastEditors: Beau pg.beau@outlook.com
- * @LastEditTime: 2023-04-21 18:14:21
+ * @LastEditTime: 2023-04-22 04:23:20
  * @FilePath: \workspace\React-The-Complete-Guide\23-NextJS\02-onwards-to-a-bigger-project-starting-project\components\meetups\NewMeetupForm.jsx
  * @Description:
  *
@@ -13,7 +13,7 @@ import { useRef } from 'react';
 import Card from '../ui/Card';
 import classes from './NewMeetupForm.module.css';
 
-function NewMeetupForm(props) {
+function NewMeetupForm({ onAddMeetup }) {
   const titleInputRef = useRef();
   const imageInputRef = useRef();
   const addressInputRef = useRef();
@@ -34,7 +34,6 @@ function NewMeetupForm(props) {
       description: enteredDescription,
     };
 
-    const { onAddMeetup } = props;
     onAddMeetup(meetupData);
     // props.onAddMeetup(meetupData);
   }

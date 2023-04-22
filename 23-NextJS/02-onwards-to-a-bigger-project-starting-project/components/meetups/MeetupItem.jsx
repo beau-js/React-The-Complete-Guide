@@ -2,7 +2,7 @@
  * @Author: Beau pg.beau@outlook.com
  * @Date: 2021-03-24 15:47:18
  * @LastEditors: Beau pg.beau@outlook.com
- * @LastEditTime: 2023-04-21 21:12:47
+ * @LastEditTime: 2023-04-22 07:18:06
  * @FilePath: \workspace\React-The-Complete-Guide\23-NextJS\02-onwards-to-a-bigger-project-starting-project\components\meetups\MeetupItem.jsx
  * @Description:
  *
@@ -17,7 +17,6 @@ function MeetupItem({ image, title, address, id }) {
   function showDetailsHandler() {
     router.push({
       pathname: `/${id}`,
-      query: { image, title, address, id },
     });
   }
 

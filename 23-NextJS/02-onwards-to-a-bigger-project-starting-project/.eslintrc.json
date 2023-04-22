@@ -10,6 +10,7 @@
     "prettier/prettier": 0,
     "react/prop-types": 0,
     "no-unused-vars": "warn"
+    // "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
     // "no-console": 0,
     // "no-unused-vars": "warn",
     // "linebreak-style": 0,
