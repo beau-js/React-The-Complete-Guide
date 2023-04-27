@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import classes from './EventsList.module.css';
 
-function EventsList({events}) {
+function EventsList({ events }) {
   // const events = useLoaderData();
 
   return (

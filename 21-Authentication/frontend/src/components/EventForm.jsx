@@ -9,7 +9,12 @@
  * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
  */
 import {
-  Form, useNavigate, useNavigation, useActionData, json, redirect,
+  Form,
+  useNavigate,
+  useNavigation,
+  useActionData,
+  json,
+  redirect,
 } from 'react-router-dom';
 
 import classes from './EventForm.module.css';
@@ -38,19 +43,37 @@ function EventForm({ method, event }) {
       <p>
         <label htmlFor="title">
           Title
-          <input id="title" type="text" name="title" required defaultValue={event ? event.title : ''} />
+          <input
+            id="title"
+            type="text"
+            name="title"
+            required
+            defaultValue={event ? event.title : ''}
+          />
         </label>
       </p>
       <p>
         <label htmlFor="image">
           Image
-          <input id="image" type="url" name="image" required defaultValue={event ? event.image : ''} />
+          <input
+            id="image"
+            type="url"
+            name="image"
+            required
+            defaultValue={event ? event.image : ''}
+          />
         </label>
       </p>
       <p>
         <label htmlFor="date">
           Date
-          <input id="date" type="date" name="date" required defaultValue={event ? event.date : ''} />
+          <input
+            id="date"
+            type="date"
+            name="date"
+            required
+            defaultValue={event ? event.date : ''}
+          />
         </label>
       </p>
       <p>

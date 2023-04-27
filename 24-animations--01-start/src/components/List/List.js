@@ -2,7 +2,7 @@
  * @Author: Beau pg.beau@outlook.com
  * @Date: 2017-10-24 17:47:22
  * @LastEditors: Beau pg.beau@outlook.com
- * @LastEditTime: 2023-04-24 03:28:32
+ * @LastEditTime: 2023-04-26 15:40:49
  * @FilePath: \workspace\React-The-Complete-Guide\24-animations--01-start\src\components\List\List.js
  * @Description:
  *
@@ -51,8 +51,7 @@ class List extends Component {
         </button>
         <p>Click Item to Remove.</p>
         <TransitionGroup component="ul" className="List">
-          {' '}
-          // component 是包裹元素的标签名
+          {/* component 是包裹元素的标签名 */}
           {listItems}
         </TransitionGroup>
       </div>

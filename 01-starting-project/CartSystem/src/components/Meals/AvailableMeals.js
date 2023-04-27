@@ -1,18 +1,7 @@
-/*
- * @Author: Beau pg.beau@outlook.com
- * @Date: 2022-03-30 14:25:38
- * @LastEditors: Beau pg.beau@outlook.com
- * @LastEditTime: 2023-04-07 18:50:09
- * @FilePath: \workspace\React-The-Complete-Guide\01-starting-project\01-starting-project\src\components\Meals\AvailableMeals.js
- * @Description:
- *
- * Copyright (c) 2023 by ${git_name_email}, All Rights Reserved.
- */
-
-import { useEffect, useState } from "react";
-import Card from "../UI/Card";
-import classes from "./AvailableMeals.module.css";
-import MealItem from "./MealItem/MealItem";
+import { useEffect, useState } from 'react';
+import Card from '../UI/Card';
+import classes from './AvailableMeals.module.css';
+import MealItem from './MealItem/MealItem';
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
@@ -23,11 +12,11 @@ const AvailableMeals = () => {
     const fetchMeals = async () => {
       try {
         const response = await fetch(
-          "https://react-http-b7ad1-default-rtdb.firebaseio.com/meals.json"
+          'https://react-http-b7ad1-default-rtdb.firebaseio.com/meals.json'
         );
 
         if (!response.ok) {
-          throw new Error("Something went wrong");
+          throw new Error('Something went wrong');
         }
 
         const responseData = await response.json();

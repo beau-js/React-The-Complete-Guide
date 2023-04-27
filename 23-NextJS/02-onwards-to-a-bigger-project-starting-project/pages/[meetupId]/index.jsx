@@ -2,7 +2,7 @@
  * @Author: Beau pg.beau@outlook.com
  * @Date: 2023-04-21 16:39:38
  * @LastEditors: Beau pg.beau@outlook.com
- * @LastEditTime: 2023-04-23 01:50:10
+ * @LastEditTime: 2023-04-26 14:46:48
  * @FilePath: \workspace\React-The-Complete-Guide\23-NextJS\02-onwards-to-a-bigger-project-starting-project\pages\[meetupId]\index.jsx
  * @Description
  *
@@ -19,7 +19,7 @@ function MeetupDetails({ meetupData }) {
         <title>{meetupData.title}</title>
         <meta name="description" content={meetupData.description} />
       </Head>
-      
+
       <MeetupDetail
         image={meetupData.image}
         title={meetupData.title}

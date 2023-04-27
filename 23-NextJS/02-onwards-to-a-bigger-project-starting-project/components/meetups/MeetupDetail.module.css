@@ -1,7 +1,33 @@
 .detail {
   text-align: center;
+
 }
 
 .detail img {
   width: 100%;
+}
+
+.detail h1,
+.detail address,
+.detail p {
+  animation: openDetail 1s ease-out forwards
+}
+
+
+
+@keyframes openDetail {
+  0% {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: translateY(50%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

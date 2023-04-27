@@ -2,7 +2,7 @@
  * @Author: Beau pg.beau@outlook.com
  * @Date: 2022-11-11 13:30:04
  * @LastEditors: Beau pg.beau@outlook.com
- * @LastEditTime: 2023-04-20 04:11:26
+ * @LastEditTime: 2023-04-25 14:41:15
  * @FilePath: \workspace\React-The-Complete-Guide\21-Authentication\frontend\src\pages\EventDetail.jsx
  * @Description:
  *
@@ -12,7 +12,7 @@
  * @Author: Beau pg.beau@outlook.com
  * @Date: 2022-11-11 13:30:04
  * @LastEditors: Beau pg.beau@outlook.com
- * @LastEditTime: 2023-04-20 04:03:29
+ * @LastEditTime: 2023-04-25 14:33:33
  * @FilePath: \workspace\React-The-Complete-Guide\21-Authentication\frontend\src\pages\EventDetail.jsx
  * @Description:
  *
@@ -20,7 +20,11 @@
  */
 import { Suspense } from 'react';
 import {
-  useRouteLoaderData, json, redirect, defer, Await,
+  useRouteLoaderData,
+  json,
+  redirect,
+  defer,
+  Await,
 } from 'react-router-dom';
 
 import EventItem from '../components/EventItem';
@@ -33,10 +37,14 @@ function EventDetailPage() {
   return (
     <>
       <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
-        <Await resolve={event}>{(loadedEvent) => <EventItem event={loadedEvent} />}</Await>
+        <Await resolve={event}>
+          {(loadedEvent) => <EventItem event={loadedEvent} />}
+        </Await>
       </Suspense>
       <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
-        <Await resolve={events}>{(loadedEvents) => <EventsList events={loadedEvents} />}</Await>
+        <Await resolve={events}>
+          {(loadedEvents) => <EventsList events={loadedEvents} />}
+        </Await>
       </Suspense>
     </>
   );
@@ -52,7 +60,7 @@ async function loadEvent(id) {
       { message: 'Could not fetch details for selected event.' },
       {
         status: 500,
-      },
+      }
     );
   } else {
     const resData = await response.json();
@@ -72,7 +80,7 @@ async function loadEvents() {
       { message: 'Could not fetch events.' },
       {
         status: 500,
-      },
+      }
     );
   } else {
     const resData = await response.json();
@@ -102,7 +110,7 @@ export async function action({ params, request }) {
       { message: 'Could not delete event.' },
       {
         status: 500,
-      },
+      }
     );
   }
   return redirect('/events');
